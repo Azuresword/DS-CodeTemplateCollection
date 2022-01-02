@@ -38,6 +38,8 @@ public:
 	void PostOrder();   //后序遍历
 	void PostOrder_stack();  //后序遍历非递归算法
 	void LevelOrder();  //层次遍历
+	void PreOrder_nonerecursion(BiTreeNode * t);		//dylan-提交非递归方案的二叉树遍历 使用栈进行
+	void InOrder_nonerecursion(BiTreeNode* t);			
 };
 BiTree::BiTree()
 {
@@ -46,6 +48,7 @@ BiTree::BiTree()
 }
 
 //定义先序遍历函数
+void BiTree::PreOrder_nonerecursion(BiTreeNode * t);
 void BiTree::PreOrder() //公有函数，对外接口
 {
 	PreOrder(Root);
@@ -194,3 +197,38 @@ void BiTree::PostOrder_stack(BiTreeNode* t)
 		}
 	} while (!s1.empty());
 }
+
+void BiTree:: PreOrder_nonerecursion(BiTreeNode * t){
+	stack <BiTreeNode*> s1;
+	while ((t!=NULL)||(s1.empty()!=1))
+	{
+		if(t!=NULL){
+			cout<<t->data;
+			s1.push(t);
+			t=t->LeftChild;
+		}
+		else{
+			s1.pop();
+			t=t->RightChild;
+		}
+	}
+}
+
+void BiTree:: InOrder_nonerecursion(BiTreeNode* t){
+		stack <BiTreeNode*> s1;
+	while ((t!=NULL)||(s1.empty()!=1))
+	{
+		if(t!=NULL){
+			
+			s1.push(t);
+			t=t->LeftChild;
+		}
+		else{
+			s1.pop();
+			cout<<t->data;
+			t=t->RightChild;
+		}
+	}
+}
+
+//后序遍历略
